@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://cqkk1xoqnosb4"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_420m7"]
+[ext_resource type="Texture2D" uid="uid://b2a1y1atnx8in" path="res://assets/PNG/Sprites/Ships/spaceShips_007.png" id="2_g6hoy"]
+[ext_resource type="PackedScene" uid="uid://docxa11qcewr2" path="res://bullet.tscn" id="2_jlmxa"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0hdvf"]
+size = Vector2(175, 147)
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("bullet_spawn_point")]
+position = Vector2(604, 549)
+script = ExtResource("1_420m7")
+bullet_scene = ExtResource("2_jlmxa")
+bullet_spawn_point = NodePath("bullet_spawn_point")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-85, -75)
+scale = Vector2(1, 0.963576)
+texture = ExtResource("2_g6hoy")
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_0hdvf")
+
+[node name="bullet_spawn_point" type="Marker2D" parent="."]
+position = Vector2(2, -87)

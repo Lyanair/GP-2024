@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://docxa11qcewr2"]
+
+[ext_resource type="Texture2D" uid="uid://roakp6ef6ne6" path="res://assets/PNG/Sprites/Missiles/spaceMissiles_015.png" id="1_jix2w"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_45y20"]
+radius = 6.0
+height = 26.0
+
+[node name="bullet" type="CharacterBody2D"]
+position = Vector2(0, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_jix2w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_45y20")
