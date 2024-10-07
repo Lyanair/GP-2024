@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://co77u8ng66mqo"]
+
+[ext_resource type="Script" path="res://rigid_body_2d.gd" id="1_k0hjv"]
+[ext_resource type="PackedScene" uid="uid://dcn4soippejj5" path="res://bullet.tscn" id="2_w8x82"]
+[ext_resource type="Texture2D" uid="uid://04l6fjuge313" path="res://assets/PNG/Sprites/Ships/spaceShips_001.png" id="3_ihpit"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ag54a"]
+radius = 51.0098
+
+[node name="Root" type="Node2D"]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+script = ExtResource("1_k0hjv")
+bullet_scene = ExtResource("2_w8x82")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(257, 256)
+shape = SubResource("CircleShape2D_ag54a")
+
+[node name="Shoot_Point" type="Node2D" parent="RigidBody2D"]
+position = Vector2(256, 287)
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
+position = Vector2(256, 254)
+texture = ExtResource("3_ihpit")
+
+[node name="Timer" type="Timer" parent="RigidBody2D"]
