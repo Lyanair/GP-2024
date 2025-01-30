@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bag3yhglfuoyw"]
+
+[ext_resource type="Script" uid="uid://dnki3jk4f1qiy" path="res://procedural_patterns.gd" id="1_vechg"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_vechg")
