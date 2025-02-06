@@ -9,5 +9,9 @@ func _process(delta: float) -> void:
 		print(timer)
 		timer -= 1
 		
-	
+	for i in range(3):
+		var grid = ""
+		for j in range(3):
+			grid += "("+str(i)+", "+str(j)+")"
+		print(grid)
 	pass

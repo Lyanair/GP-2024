@@ -11,6 +11,5 @@ config_version=5
 [application]
 
 config/name="Loops Worksheet"
-run/main_scene="uid://ccmt6x7bjxfeo"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
