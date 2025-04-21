@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://caq8si2pvgx51"]
+[gd_scene load_steps=8 format=3 uid="uid://caq8si2pvgx51"]
 
 [ext_resource type="Script" uid="uid://cuiugnpk5okfy" path="res://shooter.gd" id="1_4k3qh"]
+[ext_resource type="PackedScene" uid="uid://bgfkwc7mhx71s" path="res://cat/catgun.tscn" id="2_y28hh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4k3qh"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -46,3 +47,6 @@ shape = SubResource("CapsuleShape3D_4k3qh")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.539162, 0)
 
 [node name="Camera3D" type="Camera3D" parent="CharacterBody3D/Node3D"]
+
+[node name="Catgun" parent="CharacterBody3D/Node3D/Camera3D" instance=ExtResource("2_y28hh")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0.618866, -0.343162, -0.551476)

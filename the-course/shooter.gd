@@ -18,9 +18,13 @@ const FOV_CHANGE = 1.5
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = 9.8
 
+var bullet = load("res://catbullet.tscn")
+var instance
+
 @onready var head = $Node3D
 @onready var camera = $Node3D/Camera3D
-
+@onready var gun_anim = $Node3D/Camera3D/Catgun/AnimationPlayer
+@onready var gun_barrel = $Node3D/Camera3D/Catgun/RayCast3D
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -70,6 +74,14 @@ func _physics_process(delta):
 	var velocity_clamped = clamp(velocity.length(), 0.5, SPRINT_SPEED * 2)
 	var target_fov = BASE_FOV + FOV_CHANGE * velocity_clamped
 	camera.fov = lerp(camera.fov, target_fov, delta * 8.0)
+	
+	if Input.is_action_pressed("shoot"):
+		if !gun_anim.is_playing():
+			gun_anim.play("shoot")
+			instance = bullet.instantiate()
+			instance.position = gun_barrel.global_position
+			instance.transform.basis = gun_barrel.global_transform.basis
+			get_parent().add_child(instance)
 	
 	move_and_slide()
 
