@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://drfsv7qg24vui"]
+
+[ext_resource type="Script" uid="uid://dyrwprbtmqcpi" path="res://Meowrauders/catbullet.gd" id="1_aet0h"]
+[ext_resource type="Material" uid="uid://bvyyg8r6dpfei" path="res://Fantasy_Free/materials/ITHappy.tres" id="2_h07qy"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_en8wo"]
+size = Vector3(0.05, 0.05, 1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gpo4l"]
+angle_min = 1.07288e-05
+angle_max = 1.07288e-05
+direction = Vector3(0, 0, 1)
+spread = 44.75
+initial_velocity_min = 3.0
+initial_velocity_max = 5.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_qnbea"]
+size = Vector3(0.04, 0.04, 0.04)
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_aet0h")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_en8wo")
+surface_material_override/0 = ExtResource("2_h07qy")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+target_position = Vector3(0, 0, 0.6)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.592893)
+material_override = ExtResource("2_h07qy")
+emitting = false
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_gpo4l")
+draw_pass_1 = SubResource("BoxMesh_qnbea")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

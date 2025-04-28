@@ -1,0 +1,57 @@
+[gd_scene load_steps=5 format=3 uid="uid://bgfkwc7mhx71s"]
+
+[ext_resource type="ArrayMesh" uid="uid://c7wpso7gp7u8h" path="res://Meowrauders/cat/cat.obj" id="1_to7i3"]
+
+[sub_resource type="Animation" id="Animation_vspg2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cat:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.03879, 0, -0.0710049)]
+}
+
+[sub_resource type="Animation" id="Animation_to7i3"]
+resource_name = "shoot"
+length = 0.1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cat:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.01, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.03879, 0, -0.0710049), Vector3(-0.039, 0, -0.12), Vector3(-0.03879, 0, -0.0710049)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_18l3p"]
+_data = {
+&"RESET": SubResource("Animation_vspg2"),
+&"shoot": SubResource("Animation_to7i3")
+}
+
+[node name="Catgun" type="Node3D"]
+
+[node name="Cat" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.03879, 0, -0.0710049)
+cast_shadow = 0
+mesh = ExtResource("1_to7i3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_18l3p")
+}
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.035655, 0.482277, -1.37653)
+target_position = Vector3(0, 0, -1)

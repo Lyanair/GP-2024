@@ -1,0 +1,71 @@
+[gd_scene load_steps=10 format=3 uid="uid://caq8si2pvgx51"]
+
+[ext_resource type="Script" uid="uid://cuiugnpk5okfy" path="res://Meowrauders/shooter.gd" id="1_mu70c"]
+[ext_resource type="PackedScene" uid="uid://bgfkwc7mhx71s" path="res://Meowrauders/cat/catgun.tscn" id="2_molpo"]
+[ext_resource type="PackedScene" uid="uid://cys3likmym22w" path="res://Meowrauders/Models/GLB format/floor-panel.tscn" id="3_n5r4e"]
+[ext_resource type="PackedScene" uid="uid://colbbx8ncj8qi" path="res://Meowrauders/Models/GLB format/wall-banner.tscn" id="4_08uwt"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4k3qh"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_y28hh"]
+sky_material = SubResource("ProceduralSkyMaterial_4k3qh")
+
+[sub_resource type="Environment" id="Environment_fk0n0"]
+background_mode = 2
+sky = SubResource("Sky_y28hh")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_y28hh"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4k3qh"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_fk0n0")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(78.9929, 0, 0, 0, 0.263284, 0, 0, 0, 60.3788, 0, 0, 0)
+use_collision = true
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7605, 1.292, 0.00217724)
+script = ExtResource("1_mu70c")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
+mesh = SubResource("CapsuleMesh_y28hh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+shape = SubResource("CapsuleShape3D_4k3qh")
+
+[node name="Node3D" type="Node3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.539162, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D/Node3D"]
+
+[node name="Catgun" parent="CharacterBody3D/Node3D/Camera3D" instance=ExtResource("2_molpo")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0.618866, -0.343162, -0.551476)
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="floor-panel3" parent="." instance=ExtResource("3_n5r4e")]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -3.30996, 5.39394, -1.62122)
+
+[node name="wall-banner2" parent="." instance=ExtResource("4_08uwt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0932503, 0.131642, 29.1495)
+
+[node name="wall-banner4" parent="." instance=ExtResource("4_08uwt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0932503, 0.131642, -31.436)
+
+[node name="wall-banner7" parent="." instance=ExtResource("4_08uwt")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -37.9626, 0.131642, -7.53924)
+
+[node name="wall-banner8" parent="." instance=ExtResource("4_08uwt")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 36.6302, 0.131642, -7.53924)
