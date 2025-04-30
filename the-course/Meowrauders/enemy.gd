@@ -54,4 +54,6 @@ func _hit_finished():
 func _on_area_3d_body_part_hit(dam):
 	health -= dam
 	if health <= 0:
+		anim_tree.set("parameters/conditions/die", true)
+		await get_tree().create_timer(4.0).timeout
 		queue_free()
