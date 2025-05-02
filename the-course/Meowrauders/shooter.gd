@@ -31,8 +31,19 @@ var instance
 @onready var gun_anim = $Node3D/Camera3D/Catgun/AnimationPlayer
 @onready var gun_barrel = $Node3D/Camera3D/Catgun/RayCast3D
 
+@onready var healthui = $"../../Control/TextureRect"
+@onready var enemyui = $"../../Control/Label"
+@onready var loseoptions = $"../../Control/VBoxContainer"
+@onready var losetext = $"../../Control/Label2"
+@onready var losetint = $"../../Control/ColorRect2"
+
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	loseoptions.visible = false
+	losetext.visible = false
+	losetint.visible = false
+	healthui.visible = true
+	enemyui.visible = true
 
 
 func _unhandled_input(event):
@@ -101,3 +112,10 @@ func hit(dir):
 	emit_signal("player_hit")
 	velocity += dir * HIT_STAGGER
 	health -= 10
+	if health <= 0:
+		get_tree().paused = true
+		healthui.visible = false
+		loseoptions.visible = true
+		losetext.visible = true
+		losetint.visible = true
+		Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)

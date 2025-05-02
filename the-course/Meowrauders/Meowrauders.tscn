@@ -37,6 +37,7 @@ polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(5, 4, 3), PackedInt32Arr
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4k3qh"]
 
 [node name="World" type="Node3D"]
+process_mode = 1
 script = ExtResource("1_a452p")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -546,21 +547,73 @@ offset_bottom = 967.0
 theme_override_font_sizes/font_size = 50
 text = "Robots Saved"
 
-[node name="Label2" type="Label" parent="Control"]
+[node name="Label2" type="Label" parent="Control/Label"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 1668.0
-offset_top = 905.0
-offset_right = 1727.0
-offset_bottom = 989.0
+offset_left = -180.0
+offset_top = -22.0
+offset_right = -121.0
+offset_bottom = 62.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_font_sizes/font_size = 50
 text = "0"
+
+[node name="ColorRect2" type="ColorRect" parent="Control"]
+visible = false
+layout_mode = 0
+offset_left = -99.0
+offset_top = -70.0
+offset_right = 1998.0
+offset_bottom = 1127.0
+color = Color(0, 0, 0, 0.509804)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+process_mode = 3
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 4.02
+anchor_top = 3.502
+anchor_right = 4.02
+anchor_bottom = 3.502
+offset_left = 674.2
+offset_top = 404.92
+offset_right = 896.2
+offset_bottom = 636.92
+
+[node name="Button" type="Button" parent="Control/VBoxContainer"]
+process_mode = 3
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Restart"
+
+[node name="Button2" type="Button" parent="Control/VBoxContainer"]
+process_mode = 3
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Exit"
+
+[node name="Label2" type="Label" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 539.0
+offset_top = 167.0
+offset_right = 1390.0
+offset_bottom = 372.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 150
+text = "YOU LOSE :("
 
 [node name="spawns" type="Node3D" parent="."]
 
@@ -590,4 +643,6 @@ wait_time = 5.0
 autostart = true
 
 [connection signal="player_hit" from="NavigationRegion3D/Player" to="." method="_on_player_player_hit"]
+[connection signal="pressed" from="Control/VBoxContainer/Button" to="Control" method="_on_start_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/Button2" to="Control" method="_on_exit_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
