@@ -7,6 +7,8 @@ extends Node3D
 var zombie = load("res://Meowrauders/RobotV2.tscn")
 var instance
 
+var enemy_killed = 0
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -33,3 +35,6 @@ func _on_timer_timeout() -> void:
 	instance = zombie.instantiate()
 	instance.position = spawn_point
 	navigation_region.add_child(instance)
+
+func enemy_kill():
+	enemy_killed += 1

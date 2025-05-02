@@ -2,6 +2,7 @@ extends CharacterBody3D
 
 
 var player = null
+var world = null
 var state_machine
 var health = 5
 
@@ -9,6 +10,7 @@ const SPEED = 4.0
 const ATTACK_RANGE = 2.0
 
 @export var player_path := "/root/World/NavigationRegion3D/Player"
+@export var world_path = "/root/World"
 
 @onready var nav_agent = $NavigationAgent3D
 @onready var anim_tree = $AnimationTree
@@ -18,6 +20,7 @@ const ATTACK_RANGE = 2.0
 func _ready():
 	player = get_node(player_path)
 	state_machine = anim_tree.get("parameters/playback")
+	world = get_node(world_path)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -53,7 +56,8 @@ func _hit_finished():
 
 func _on_area_3d_body_part_hit(dam):
 	health -= dam
-	if health <= 0:
+	if health == 0:
+		world.enemy_kill()
 		anim_tree.set("parameters/conditions/die", true)
 		await get_tree().create_timer(4.0).timeout
 		queue_free()
