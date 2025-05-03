@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://caq8si2pvgx51"]
+[gd_scene load_steps=23 format=3 uid="uid://caq8si2pvgx51"]
 
 [ext_resource type="Script" uid="uid://shvtvoxq4qy5" path="res://Meowrauders/world.gd" id="1_a452p"]
 [ext_resource type="Script" uid="uid://cuiugnpk5okfy" path="res://Meowrauders/shooter.gd" id="1_mu70c"]
@@ -14,6 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://birgxr16ev2vu" path="res://Meowrauders/Models/wall-window.tscn" id="11_v5dji"]
 [ext_resource type="Texture2D" uid="uid://vtmee4o2a7xe" path="res://Meowrauders/xbox_dpad_all.png" id="13_4u5wj"]
 [ext_resource type="Script" uid="uid://cw7bnvml677td" path="res://Meowrauders/HUD.gd" id="13_je5kj"]
+[ext_resource type="AudioStream" uid="uid://b6p0thnu6n5l6" path="res://Meowrauders/cat-meow-1-fx-306178.mp3" id="14_gab13"]
+[ext_resource type="AudioStream" uid="uid://c4ocdrtmmtd5s" path="res://Meowrauders/meow.ogg" id="15_dxisr"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4k3qh"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -486,6 +488,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.539162, 0)
 
 [node name="Catgun" parent="NavigationRegion3D/Player/Node3D/Camera3D" instance=ExtResource("2_molpo")]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0.618866, -0.343162, -0.551476)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="NavigationRegion3D/Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.11105, -1.292, -1.40401)
+stream = ExtResource("15_dxisr")
+volume_db = -33.208
+autoplay = true
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="NavigationRegion3D/Player"]
+stream = ExtResource("14_gab13")
+volume_db = -37.436
 
 [node name="Control" type="Control" parent="." groups=["HUD"]]
 layout_mode = 3

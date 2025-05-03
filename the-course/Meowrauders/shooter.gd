@@ -30,6 +30,7 @@ var instance
 @onready var camera = $Node3D/Camera3D
 @onready var gun_anim = $Node3D/Camera3D/Catgun/AnimationPlayer
 @onready var gun_barrel = $Node3D/Camera3D/Catgun/RayCast3D
+@onready var gunsound = $AudioStreamPlayer3D2
 
 @onready var healthui = $"../../Control/TextureRect"
 @onready var enemyui = $"../../Control/Label"
@@ -98,6 +99,7 @@ func _physics_process(delta):
 			instance.position = gun_barrel.global_position
 			instance.transform.basis = gun_barrel.global_transform.basis
 			get_parent().add_child(instance)
+			gunsound.play()
 	
 	move_and_slide()
 
